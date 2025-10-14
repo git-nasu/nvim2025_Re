@@ -4,3 +4,4 @@
 vim.g.lazyvim_picker = "snacks"
 
 vim.opt.virtualedit = "onemore"
+vim.opt.timeoutlen = 300
