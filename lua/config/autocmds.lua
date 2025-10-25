@@ -11,9 +11,22 @@
 
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd("Filetype", {
+autocmd("FileType", {
   pattern = "*",
   callback = function()
     vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
+
+autocmd("BufWritePost", {
+  pattern = "*",
+  callback = function()
+    local filename = vim.fn.expand("%:t")
+
+    if vim.opt.number:get() then
+      vim.api.nvim_echo({ { filename .. " save now!", "Normal" } }, false, {})
+    end
+
+    print("shell_error:", vim.v.shell_error)
   end,
 })
